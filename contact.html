@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 无聊至极</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 64, 129, 0.1);
+        }
+
+        .submit-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+        }
+
+        .message-board {
+            margin-top: 3rem;
+        }
+
+        .message {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        .message-content {
+            color: var(--primary-text);
+            line-height: 1.6;
+        }
+
+        .bored-level {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .bored-level label {
+            margin-right: 1rem;
+            color: var(--secondary-text);
+        }
+
+        .bored-level input[type="range"] {
+            flex: 1;
+        }
+
+        .mood-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .mood-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mood-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary-text);
+            pointer-events: none;
+        }
+
+        .char-counter {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+        }
+
+        .mood-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .mood-emoji {
+            font-size: 1.5rem;
+        }
+
+        .mood-text {
+            font-size: 0.9rem;
+        }
+
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .level-emoji {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+
+        .message-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 15px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .message {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .message::before {
+            content: attr(data-number);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2rem;
+            text-align: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-content">
+        <div class="logo-section">
+            <h1 class="site-title">无聊至极</h1>
+            <p class="site-slogan">无聊至极，乐在其中</p>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="boring.html">无聊内容</a></li>
+                <li><a href="games/meow.html">小游戏</a></li>
+                <li><a href="weird.html">奇怪的链接</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info">
+            <p>欢迎来到这个无聊的角落</p>
+            <p>© 2023 无聊至极</p>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <div class="content-area">
+            <div class="contact-container">
+                <h2>联系我们</h2>
+                <p class="subtitle">如果你觉得这个网站很无聊，请告诉我们你有多无聊</p>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label>你的昵称</label>
+                        <div class="input-wrapper">
+                            <input type="text" required placeholder="随便起个名字" id="nickname">
+                            <span class="input-icon">👤</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>你现在的心情</label>
+                        <div class="mood-selector">
+                            <button type="button" class="mood-btn" data-mood="😴">
+                                <span class="mood-emoji">😴</span>
+                                <span class="mood-text">无聊</span>
+                            </button>
+                            <button type="button" class="mood-btn" data-mood="🤔">
+                                <span class="mood-emoji">🤔</span>
+                                <span class="mood-text">困惑</span>
+                            </button>
+                            <button type="button" class="mood-btn" data-mood="😂">
+                                <span class="mood-emoji">😂</span>
+                                <span class="mood-text">搞笑</span>
+                            </button>
+                            <button type="button" class="mood-btn" data-mood="🤪">
+                                <span class="mood-emoji">🤪</span>
+                                <span class="mood-text">疯狂</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>无聊程度</label>
+                        <div class="bored-level">
+                            <input type="range" min="1" max="100" value="50" id="boredLevel">
+                            <div class="level-indicator">
+                                <span id="boredValue">50%</span>
+                                <div class="level-emoji" id="levelEmoji">😐</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>说点什么</label>
+                        <div class="input-wrapper">
+                            <textarea rows="4" required placeholder="分享你的无聊经历..." id="message"></textarea>
+                            <div class="char-counter">
+                                <span id="charCount">0</span>/200
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">发送无聊</span>
+                        <span class="btn-icon">📨</span>
+                    </button>
+                </form>
+
+                <div class="message-board">
+                    <h3>无聊留言板</h3>
+                    <div class="message-filters">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="recent">最新</button>
+                        <button class="filter-btn" data-filter="popular">最受欢迎</button>
+                    </div>
+                    <div id="messages"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const moodButtons = document.querySelectorAll('.mood-btn');
+        const boredLevel = document.getElementById('boredLevel');
+        const boredValue = document.getElementById('boredValue');
+        const levelEmoji = document.getElementById('levelEmoji');
+        const messageTextarea = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+        const contactForm = document.getElementById('contactForm');
+        const messagesContainer = document.getElementById('messages');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // 心情选择
+        moodButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                moodButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                btn.style.transform = 'scale(1.1)';
+                setTimeout(() => btn.style.transform = '', 200);
+            });
+        });
+
+        // 无聊程度滑块
+        boredLevel.addEventListener('input', () => {
+            const value = boredLevel.value;
+            boredValue.textContent = `${value}%`;
+            
+            // 根据程度显示不同表情
+            if (value < 20) levelEmoji.textContent = '😊';
+            else if (value < 40) levelEmoji.textContent = '😐';
+            else if (value < 60) levelEmoji.textContent = '😴';
+            else if (value < 80) levelEmoji.textContent = '😫';
+            else levelEmoji.textContent = '💀';
+
+            levelEmoji.style.transform = 'scale(1.2)';
+            setTimeout(() => levelEmoji.style.transform = '', 200);
+        });
+
+        // 字数统计
+        messageTextarea.addEventListener('input', () => {
+            const length = messageTextarea.value.length;
+            charCount.textContent = length;
+            
+            if (length > 180) {
+                charCount.style.color = '#ff4081';
+            } else {
+                charCount.style.color = 'var(--secondary-text)';
+            }
+        });
+
+        // 表单提交
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nickname = document.getElementById('nickname').value;
+            const mood = document.querySelector('.mood-btn.active')?.dataset.mood || '😐';
+            const boredLevel = document.getElementById('boredLevel').value;
+            const message = document.getElementById('message').value;
+
+            addMessage(nickname, mood, boredLevel, message);
+            
+            // 重置表单
+            contactForm.reset();
+            moodButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // 添加提交动画
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.classList.add('submitted');
+            setTimeout(() => submitBtn.classList.remove('submitted'), 1000);
+        });
+
+        // 消息过滤
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterMessages(btn.dataset.filter);
+            });
+        });
+
+        function filterMessages(filter) {
+            const messages = document.querySelectorAll('.message');
+            messages.forEach(msg => {
+                msg.style.opacity = '0';
+                setTimeout(() => msg.style.opacity = '1', 300);
+            });
+        }
+
+        function addMessage(nickname, mood, boredLevel, content) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message';
+            messageElement.dataset.number = `#${messagesContainer.children.length + 1}`;
+            
+            messageElement.innerHTML = `
+                <div class="message-header">
+                    <span>${nickname} ${mood}</span>
+                    <span>无聊指数: ${boredLevel}%</span>
+                </div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            messageElement.style.opacity = '0';
+            messagesContainer.insertBefore(messageElement, messagesContainer.firstChild);
+            requestAnimationFrame(() => messageElement.style.opacity = '1');
+        }
+
+        // 添加初始留言
+        const initialMessages = [
+            {
+                nickname: "无聊大师",
+                mood: "😴",
+                boredLevel: "95",
+                content: "这是我见过最无聊的网站，我爱死它了！"
+            },
+            {
+                nickname: "摸鱼王",
+                mood: "🤪",
+                boredLevel: "80",
+                content: "我在这里已经浪费了3个小时，感觉很充实。"
+            }
+        ];
+
+        initialMessages.forEach(msg => {
+            addMessage(msg.nickname, msg.mood, msg.boredLevel, msg.content);
+        });
+    </script>
+</body>
+</html> 

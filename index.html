@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无聊至极 - 一个专注于无聊的网站</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 字体定义 */
+        @font-face {
+            font-family: 'Smiley Sans';
+            src: url('SmileySans-Oblique.ttf') format('truetype');
+        }
+
+        /* 全局变量定义 */
+        :root {
+            --fixed-bg: #ffeb3b;        /* 固定区域背景色 */
+            --content-bg: #ffffff;       /* 内容区域背景色 */
+            --primary-text: #333333;     /* 主要文字颜色 */
+            --secondary-text: #666666;   /* 次要文字颜色 */
+            --accent-color: #ff4081;     /* 强调色 */
+            --nav-hover: #f5d000;        /* 导航hover颜色 */
+        }
+
+        /* 全局重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Smiley Sans', sans-serif;
+        }
+
+        /* 页面基本布局 */
+        body {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 左侧固定内容区域 */
+        .fixed-content {
+            position: fixed;
+            width: 300px;
+            height: 100vh;
+            background: var(--fixed-bg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Logo区域样式 */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-text);
+        }
+
+        .site-slogan {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+        }
+
+        /* 导航菜单样式 */
+        .nav-menu {
+            margin: 2rem 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 0.8rem;
+            color: var(--primary-text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: var(--nav-hover);
+            transform: translateX(10px);
+        }
+
+        /* 底部联系信息 */
+        .contact-info {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+
+        /* 右侧内容区域 */
+        .right-section {
+            margin-left: 300px;
+            flex-grow: 1;
+            background: var(--content-bg);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .content-area {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* 每日挑战卡片 */
+        .daily-challenge {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .challenge-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        /* 特色内容网格布局 */
+        .featured-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* 内容卡片样式 */
+        .content-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 奇怪链接区域 */
+        .weird-links {
+            margin-top: 3rem;
+        }
+
+        .weird-link-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #f0f0f0;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--primary-text);
+        }
+
+        .weird-link-item:hover {
+            background: #e5e5e5;
+        }
+
+        /* 响应式布局调整 */
+        @media (max-width: 768px) {
+            .fixed-content {
+                position: static;
+                width: 100%;
+                height: auto;
+                min-height: auto;
+            }
+
+            .right-section {
+                margin-left: 0;
+            }
+
+            body {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧固定内容区域 -->
+    <div class="fixed-content">
+        <!-- Logo和标语 -->
+        <div class="logo-section">
+            <h1 class="site-title">无聊至极</h1>
+            <p class="site-slogan">无聊至极，乐在其中</p>
+        </div>
+        
+        <!-- 导航菜单 -->
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="boring.html">无聊内容</a></li>
+                <li><a href="games/meow.html">小游戏</a></li>
+                <li><a href="weird.html">奇怪的链接</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+        
+        <!-- 底部版权信息 -->
+        <div class="contact-info">
+            <p>欢迎来到这个无聊的角落</p>
+            <p>© 2023 无聊至极</p>
+        </div>
+    </div>
+
+    <!-- 右侧主要内容区域 -->
+    <div class="right-section">
+        <div class="content-area">
+            <!-- 每日无聊挑战 -->
+            <section class="daily-challenge">
+                <h2 class="challenge-title">今日无聊挑战</h2>
+                <p>尝试盯着一面白墙看5分钟，看看能发现什么有趣的图案</p>
+            </section>
+
+            <!-- 特色内容卡片 -->
+            <section class="featured-content">
+                <!-- 无聊事实卡片 -->
+                <div class="content-card">
+                    <h3>无聊事实</h3>
+                    <p>你知道吗？人类平均每天眨眼20,000次</p>
+                </div>
+                
+                <!-- 今日游戏卡片 -->
+                <div class="content-card">
+                    <h3>今日游戏</h3>
+                    <p>来玩玩我们最新的"喵了个喵"</p>
+                </div>
+                
+                <!-- 无聊新闻卡片 -->
+                <div class="content-card">
+                    <h3>无聊新闻</h3>
+                    <p>科学家发现看着空白墙壁也能产生多巴胺</p>
+                </div>
+            </section>
+
+            <!-- 奇怪链接区域 -->
+            <section class="weird-links">
+                <h2>奇怪的发现</h2>
+                <!-- 长狗挑战链接 -->
+                <a href="https://longdogechallenge.com/" class="weird-link-item" target="_blank">
+                    <span>🐕 长狗挑战 - 它到底有多长？</span>
+                </a>
+                <!-- 奇怪网站链接 -->
+                <a href="https://weirdorconfusing.com/" class="weird-link-item" target="_blank">
+                    <span>❓ 奇怪还是困惑 - 自己判断吧</span>
+                </a>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

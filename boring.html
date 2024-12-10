@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无聊内容 - 无聊至极</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .boring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .boring-item {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .boring-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .boring-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .boring-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .boring-fact {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--secondary-text);
+        }
+
+        .boring-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .load-more {
+            display: block;
+            width: 200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .load-more:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+        }
+
+        #boringFacts {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .boring-item-inner {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .boring-item-inner:hover {
+            transform: translateY(-5px);
+        }
+
+        .boring-content {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .fact-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,64,129,0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .fact-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .fact-category {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        .share-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 15px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-content">
+        <div class="logo-section">
+            <h1 class="site-title">无聊至极</h1>
+            <p class="site-slogan">无聊至极，乐在其中</p>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="boring.html">无聊内容</a></li>
+                <li><a href="games/meow.html">小游戏</a></li>
+                <li><a href="weird.html">奇怪的链接</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info">
+            <p>欢迎来到这个无聊的角落</p>
+            <p>© 2023 无聊至极</p>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <div class="content-area">
+            <h2>无聊内容集锦</h2>
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="facts">无聊事实</button>
+                <button class="tab-btn" data-category="images">无聊图片</button>
+                <button class="tab-btn" data-category="videos">无聊视频</button>
+            </div>
+            
+            <div id="boringFacts" class="boring-grid">
+                <div class="boring-item">
+                    <div class="boring-item-inner">
+                        <img src="https://picsum.photos/seed/1/400/300" alt="随机无聊图片" loading="lazy">
+                        <div class="boring-content">
+                            <span class="fact-number">#1</span>
+                            <h3>蜗牛的睡眠</h3>
+                            <p class="boring-fact">蜗牛可以睡上三年，醒来后继续若无其事地生活。这让你感觉如何？</p>
+                            <div class="fact-footer">
+                                <span class="fact-category">动物界</span>
+                                <button class="share-btn" onclick="shareContent(this)">分享</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boring-item">
+                    <img src="https://picsum.photos/seed/2/400/300" alt="随机无聊图片">
+                    <h3>无聊事实 #2</h3>
+                    <p class="boring-fact">一只蚂蚁掉下来不会摔死，因为它太轻了，终端速度不足以造成伤害。</p>
+                </div>
+                <div class="boring-item">
+                    <iframe class="boring-video" 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                    <h3>无聊视频</h3>
+                    <p class="boring-fact">这可能是互联网上最无聊的视频了。</p>
+                </div>
+            </div>
+            <button class="load-more" onclick="loadMoreContent()">加载更多无聊</button>
+        </div>
+    </div>
+
+    <script>
+        const boringFacts = [
+            "人类是唯一会因为无聊而笑的动物",
+            "平均每个人一生要花6个月等红灯",
+            "企鹅也有膝盖",
+            "香蕉是浆果而草莓不是",
+            "所有的熊猫都是中国的财产"
+        ];
+
+        let factIndex = 0;
+
+        function loadMoreContent() {
+            const container = document.getElementById('boringFacts');
+            const newItem = document.createElement('div');
+            newItem.className = 'boring-item';
+            newItem.style.opacity = '0';
+            newItem.style.transform = 'translateY(20px)';
+            
+            newItem.innerHTML = `
+                <img src="https://picsum.photos/seed/${Math.random()}/400/300" alt="随机无聊图片">
+                <h3>无聊事实 #${factIndex + 3}</h3>
+                <p class="boring-fact">${boringFacts[factIndex % boringFacts.length]}</p>
+            `;
+            
+            container.appendChild(newItem);
+            
+            // 触发重排以启动动画
+            void newItem.offsetWidth;
+            newItem.style.opacity = '1';
+            newItem.style.transform = 'translateY(0)';
+            newItem.style.transition = 'all 0.5s ease';
+            
+            factIndex++;
+        }
+
+        // 分类切换功能
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                loadCategoryContent(btn.dataset.category);
+            });
+        });
+
+        function loadCategoryContent(category) {
+            const container = document.getElementById('boringFacts');
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                // 这里可以根据分类加载不同内容
+                container.style.opacity = '1';
+            }, 300);
+        }
+
+        function shareContent(btn) {
+            const content = btn.closest('.boring-item').querySelector('.boring-fact').textContent;
+            if (navigator.share) {
+                navigator.share({
+                    title: '无聊事实分享',
+                    text: content,
+                    url: window.location.href
+                });
+            } else {
+                // 复制到剪贴板
+                navigator.clipboard.writeText(content).then(() => {
+                    alert('内容已复制到剪贴板！');
+                });
+            }
+        }
+    </script>
+</body>
+</html> 
